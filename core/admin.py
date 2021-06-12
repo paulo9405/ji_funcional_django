@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Pessoa, FichaPessoa
+from .models import Pessoa, FichaPessoa, Plano, Endereco, Documento
 
 class PessoaAdmin(admin.ModelAdmin):
     list_display = (
@@ -13,4 +13,7 @@ class FichaPessoaAdmin(admin.ModelAdmin):
 
 admin.site.register(Pessoa, PessoaAdmin)
 admin.site.register(FichaPessoa, FichaPessoaAdmin)
+admin.site.register(Plano)
+admin.site.register(Endereco)
+admin.site.register(Documento)
 
