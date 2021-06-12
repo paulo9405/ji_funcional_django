@@ -20,7 +20,7 @@ class Pessoa(models.Model):
     nome = models.CharField(u'Nome', max_length=100)
     telefone = models.CharField(u'Telefone', max_length=50)
     email = models.EmailField(u'Email', max_length=100,)
-    data_nascimento = models.DateField('data de nascimento', auto_now=False)
+    data_nascimento = models.DateField(u'data de nascimento', auto_now=False)
     plano = models.ForeignKey(Plano, on_delete=models.SET_NULL, null=True)
     horario_registro = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     ultima_vez_modificado = models.DateTimeField(auto_now=True)
@@ -31,12 +31,12 @@ class Pessoa(models.Model):
 
 class Documento(models.Model):
     TIPO = (
-        ('RG', 'Carteira de identidade'),
-        ('CPF', 'Cadastro unico de pessoa fisica (CPF)'),
+        ('RG', 'Carteira de Identidade (RG)'),
+        ('CPF', 'Cadastro Unico de Pessoa Fisica (CPF)'),
         ('PP', 'Passaporte')
     )
-    numero = models.CharField(max_length=50)
     tipo = models.CharField(max_length=3, choices=TIPO)
+    numero = models.CharField(max_length=50)
     pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE, help_text='Pessoa')
 
     def __str__(self):
