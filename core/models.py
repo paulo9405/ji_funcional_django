@@ -22,6 +22,7 @@ class Pessoa(models.Model):
 
 class FichaPessoa(models.Model):
     cliente = models.ForeignKey(Pessoa, on_delete=CASCADE)
+
     peso = models.DecimalField(max_digits=5, decimal_places=2)
     altura= models.DecimalField(max_digits=3, decimal_places=2)
     imc = models.DecimalField(max_digits=4, decimal_places=2)

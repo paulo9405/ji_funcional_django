@@ -1,0 +1,10 @@
+<h2> Fichas das Pessoas </h2>
+
+
+<ul>
+    {% for ficha in fichas %}
+        <li>
+            {{ ficha.cliente }} - {{ ficha.peso }}
+        </li>
+    {% endfor %}
+</ul>
