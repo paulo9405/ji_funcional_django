@@ -3,12 +3,12 @@ from .models import Pessoa, FichaPessoa
 
 class PessoaAdmin(admin.ModelAdmin):
     list_display = (
-        'nome', 'telefone', 'email', 'plano_mes', 'plano_tri'
+        'nome', 'telefone', 'email', 'plano'
     )
-
+#TODO: idade
 class FichaPessoaAdmin(admin.ModelAdmin):
     list_display = (
-        'cliente', 'peso', 'altura', 'imc', 'data_inicio', 'observacoes'
+        'cliente', 'idade', 'peso', 'altura', 'imc', 'observacoes'
     )
 
 admin.site.register(Pessoa, PessoaAdmin)

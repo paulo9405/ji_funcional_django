@@ -4,7 +4,15 @@
 <ul>
     {% for ficha in fichas %}
         <li>
-            {{ ficha.cliente }} - {{ ficha.peso }}
+            {{ ficha.cliente }}
         </li>
     {% endfor %}
 </ul>
+
+<form action="{% url 'core_ficha_nova' %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Cadastrar</button>
+</form>
