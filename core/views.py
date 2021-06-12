@@ -42,6 +42,7 @@ def pessoa_delete(request, id):
         return render(request, 'core/delete_confirm.html', {'obj': pessoa})
 
 #----------------------------------------------------------------------------------------
+#TODO: terminar todos os cruds
 
 def lista_ficha(request):
     fichas = FichaPessoa.objects.all()

@@ -6,7 +6,7 @@ from django.db.models.deletion import CASCADE
 import datetime
 import math
 
-
+#TODO: terminar todos os cruds
 class Plano(models.Model):
     tipo = models.CharField(max_length=100)
     valor = models.DecimalField(decimal_places=2, max_digits=8)
@@ -39,11 +39,20 @@ class Documento(models.Model):
     tipo = models.CharField(max_length=3, choices=TIPO)
     pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE, help_text='Pessoa')
 
+    def __str__(self):
+        return 'Documentos'
+
 
 class Endereco(models.Model):
     proprietario = models.ForeignKey(Pessoa, on_delete=models.CASCADE, null=True, blank=True)
     rua = models.CharField(max_length=100)
-    #bairro = models.CharField
+    numero = models.CharField(max_length=6, null=True)
+    bairro = models.CharField(max_length=50, null=True)
+    cidade = models.CharField(max_length=50, null=True)
+    estado = models.CharField(max_length=50, null=True)
+    pais = models.CharField(max_length=50, null=True)
+    def __str__(self):
+        return 'Endereço'
 
 
 
@@ -64,7 +73,7 @@ class FichaPessoa(models.Model):
 
 
     def __str__(self):
-        return str(self.cliente) + ' - ' + str(self.peso)
+        return self.cliente
 
 
 

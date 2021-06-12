@@ -11,6 +11,7 @@
     {% endfor %}
 </ul>
 
+
 <form action="{% url 'core_pessoa_nova' %}" method="POST">
     {% csrf_token %}
 
@@ -18,3 +19,6 @@
 
     <button type="submit">Cadastrar</button>
 </form>
+
+
+
