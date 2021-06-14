@@ -1,0 +1,12 @@
+<h2> Update Endereço: {{endereco}} </h2>
+
+
+<form action="{% url 'core_endereco_update' endereco.id %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{% url 'core_endereco_delete' endereco.id %}">Deletar</a>

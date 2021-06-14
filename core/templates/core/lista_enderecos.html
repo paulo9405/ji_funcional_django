@@ -1,0 +1,22 @@
+<h2> Lista de Endereços </h2>
+
+
+<ul>
+    {% for endereco in enderecos %}
+        <li>
+            <a href="{% url 'core_endereco_update' endereco.id %}">
+                {{ endereco.rua }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<form action="{% url 'core_endereco_novo' %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Cadastrar</button>
+</form>
+

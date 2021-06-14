@@ -1,10 +1,12 @@
-<h2> Fichas das Pessoas </h2>
+<h2> Fichas dos Clientes </h2>
 
 
 <ul>
     {% for ficha in fichas %}
         <li>
-            {{ ficha.cliente }}
+            <a href="{% url 'core_ficha_update' ficha.id %}">
+                {{ ficha.cliente }} - {{ ficha.idade }}
+            </a>
         </li>
     {% endfor %}
 </ul>

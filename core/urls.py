@@ -6,7 +6,13 @@ from .views import (
     pessoa_nova,
     pessoa_update,
     pessoa_delete,
-    ficha_nova
+    ficha_nova,
+    ficha_update,
+    ficha_delete,
+    lista_enderecos,
+    endereco_novo,
+    endereco_update,
+    endereco_delete,
 )
 
 urlpatterns = [
@@ -18,6 +24,15 @@ urlpatterns = [
 
     path('ficha-pessoas/', lista_ficha, name='core_lista_fichas'),
     path('ficha-nova/', ficha_nova, name='core_ficha_nova'),
+    path('ficha-update/<int:id>/', ficha_update, name='core_ficha_update'),
+    path('ficha-delete/<int:id>/', ficha_delete, name='core_ficha_delete'),
+
+    path('enderecos/', lista_enderecos, name='core_lista_enderecos'),
+    path('endereco-novo/', endereco_novo, name='core_endereco_novo'),
+    path('endereco-update/<int:id>/', endereco_update,
+         name='core_endereco_update'),
+    path('endereco-delete/<int:id>/', endereco_delete,
+         name='core_endereco_delete'),
 
 ]
 

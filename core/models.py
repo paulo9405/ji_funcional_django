@@ -52,8 +52,8 @@ class Endereco(models.Model):
     estado = models.CharField(max_length=50, null=True)
     pais = models.CharField(max_length=50, null=True)
     def __str__(self):
-        return 'Endereço'
-
+        #return str(self.rua) + ' - ' + str(self.bairro)
+        return 'endereço de ' +''+ str(self.proprietario)
 
 
 class FichaPessoa(models.Model):
@@ -73,7 +73,7 @@ class FichaPessoa(models.Model):
 
 
     def __str__(self):
-        return self.cliente
+        return str(self.cliente)
 
 
 

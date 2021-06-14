@@ -1,6 +1,20 @@
 from django.shortcuts import render, redirect
-from .models import Pessoa, FichaPessoa
-from .forms import PessoaForm, FichaPessoaForm
+from .models import (
+    Pessoa,
+    FichaPessoa,
+    Documento,
+    Endereco,
+    Plano,
+)
+
+from .forms import (
+    PessoaForm,
+    FichaPessoaForm,
+    DocumentoForm,
+    EnderecoForm,
+    PlanoForm,
+)
+
 
 def home(request):
     return render(request, 'core.html')
@@ -12,11 +26,13 @@ def lista_pessoas(request):
     data = {'pessoas': pessoas, 'form': form}
     return render(request, 'core/lista_pessoas.html', data)
 
+
 def pessoa_nova(request):
     form = PessoaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_pessoas')
+
 
 def pessoa_update(request, id):
     data = {}
@@ -41,7 +57,7 @@ def pessoa_delete(request, id):
     else:
         return render(request, 'core/delete_confirm.html', {'obj': pessoa})
 
-#----------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------
 #TODO: terminar todos os cruds
 
 def lista_ficha(request):
@@ -50,13 +66,72 @@ def lista_ficha(request):
     data = {'fichas': fichas, 'form': form}
     return render(request, 'core/lista_fichas.html', data)
 
+
 def ficha_nova(request):
     form = FichaPessoaForm(request.POST or None)
     if form.is_valid():
         form.save()
     return redirect('core_lista_fichas')
 
-#finalizar ficha update e ficha delete
 
+def ficha_update(request, id):
+    data = {}
+    ficha = FichaPessoa.objects.get(id=id)
+    form = FichaPessoaForm(request.POST or None, instance=ficha)
+    data['ficha'] = ficha
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_fichas')
+    else:
+        return render(request, 'core/update_ficha.html', data)
+
+#TODO: os delete no arquivo delete só retornam para a lista pessoas,
+# tenho q colocar dado um retornar para a sua pagina, ou entao remover o botao
+def ficha_delete(request, id):
+    ficha = FichaPessoa.objects.get(id=id)
+    if request.method == 'POST':
+        ficha.delete()
+        return redirect('core_lista_fichas')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': ficha})
+#------------------------------------------------------------------------------
+
+def lista_enderecos(request):
+    enderecos = Endereco.objects.all()
+    form = EnderecoForm()
+    data = {'enderecos': enderecos, 'form': form}
+    return render(request, 'core/lista_enderecos.html', data)
+
+def endereco_novo(request):
+    form = EnderecoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_enderecos')
+
+def endereco_update(request, id):
+    data = {}
+    endereco = Endereco.objects.get(id=id)
+    form = EnderecoForm(request.POST or None, instance=endereco)
+    data['endereco'] = endereco
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_enderecos')
+    else:
+        return render(request, 'core/update_endereco.html', data)
+
+
+def endereco_delete(request, id):
+    endereco = Endereco.objects.get(id=id)
+    if request.method == 'POST':
+        endereco.delete()
+        return redirect('core_lista_enderecos')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': endereco})
 
 

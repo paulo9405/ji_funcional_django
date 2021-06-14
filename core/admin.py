@@ -1,5 +1,11 @@
 from django.contrib import admin
-from .models import Pessoa, FichaPessoa, Plano, Endereco, Documento
+from .models import (
+    Pessoa,
+    FichaPessoa,
+    Plano,
+    Endereco,
+    Documento
+)
 
 class PessoaAdmin(admin.ModelAdmin):
     list_display = (
