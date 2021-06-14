@@ -1,13 +1,14 @@
 import  os
 from pathlib import Path
+from decouple import  config
+from dj_database_url import parse as dburl
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = 'django-insecure-4r$$4%yr6n-_)ltod&u#_!c=l!5b6_5j1brun!71w+9)@0chc*'
+SECRET_KEY = config('SECRET_KEY')
+DEBUG = config('DEBUG', default=False, cast=bool)
 
-DEBUG = True
-
-ALLOWED_HOSTS = ['localhost', ]
+ALLOWED_HOSTS = ['localhost', 'jifuncional.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -49,12 +50,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ji_funcional.wsgi.application'
 
+default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
     }
-}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -82,5 +81,7 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

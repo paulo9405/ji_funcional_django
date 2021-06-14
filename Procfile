@@ -1,0 +1,1 @@
+web: gunicorn ji_funcional.wsgi --log-file -
