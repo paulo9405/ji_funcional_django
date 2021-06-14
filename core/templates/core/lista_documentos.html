@@ -1,0 +1,21 @@
+<h2> Listas de Documentos </h2>
+
+
+<ul>
+    {% for documento in documentos %}
+        <li>
+            <a href="{% url 'core_documento_update' documento.id %}">
+                {{ documento.pessoa }} - {{ documento.tipo }}
+            </a>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<form action="{% url 'core_documento_novo' %}" method="POST">
+    {% csrf_token %}
+
+    {{form.as_p}}
+
+    <button type="submit">Cadastrar</button>
+</form>

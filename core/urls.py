@@ -13,6 +13,10 @@ from .views import (
     endereco_novo,
     endereco_update,
     endereco_delete,
+    lista_documentos,
+    documento_novo,
+    documento_update,
+    documento_delete,
 )
 
 urlpatterns = [
@@ -33,6 +37,13 @@ urlpatterns = [
          name='core_endereco_update'),
     path('endereco-delete/<int:id>/', endereco_delete,
          name='core_endereco_delete'),
+
+    path('documentos/', lista_documentos, name='core_lista_documentos'),
+    path('documento-novo/', documento_novo, name='core_documento_novo'),
+    path('documento-update/<int:id>/', documento_update,
+         name='core_documento_update'),
+    path('documento-delete/<int:id>/', documento_delete,
+         name='core_documento_delete'),
 
 ]
 

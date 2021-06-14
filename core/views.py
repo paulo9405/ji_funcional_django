@@ -4,7 +4,7 @@ from .models import (
     FichaPessoa,
     Documento,
     Endereco,
-    Plano,
+
 )
 
 from .forms import (
@@ -12,7 +12,7 @@ from .forms import (
     FichaPessoaForm,
     DocumentoForm,
     EnderecoForm,
-    PlanoForm,
+
 )
 
 
@@ -135,3 +135,40 @@ def endereco_delete(request, id):
         return render(request, 'core/delete_confirm.html', {'obj': endereco})
 
 
+#------------------------------------------------------------------------------
+def lista_documentos(request):
+    documentos = Documento.objects.all()
+    form = DocumentoForm()
+    data = {'documentos': documentos, 'form': form}
+    return render(request, 'core/lista_documentos.html', data)
+
+
+def documento_novo(request):
+    form = DocumentoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    return redirect('core_lista_documentos')
+
+
+def documento_update(request, id):
+    data = {}
+    documento = Documento.objects.get(id=id)
+    form = DocumentoForm(request.POST or None, instance=documento)
+    data['documento'] = documento
+    data['form'] = form
+
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('core_lista_documentos')
+    else:
+        return render(request, 'core/update_documento.html', data)
+
+
+def documento_delete(request, id):
+    documento = Documento.objects.get(id=id)
+    if request.method == 'POST':
+        documento.delete()
+        return redirect('core_lista_documentos')
+    else:
+        return render(request, 'core/delete_confirm.html', {'obj': documento})

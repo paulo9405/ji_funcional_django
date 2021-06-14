@@ -40,7 +40,7 @@ class Documento(models.Model):
     pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE, help_text='Pessoa')
 
     def __str__(self):
-        return 'Documentos'
+        return 'Documentos de ' +''+ str(self.pessoa)
 
 
 class Endereco(models.Model):
