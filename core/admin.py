@@ -11,15 +11,32 @@ class PessoaAdmin(admin.ModelAdmin):
     list_display = (
         'nome', 'telefone', 'email', 'plano'
     )
-#TODO: idade
+
+
 class FichaPessoaAdmin(admin.ModelAdmin):
     list_display = (
-        'cliente', 'idade', 'peso', 'altura', 'imc', 'observacoes'
+        'cliente', 'idade','sexo', 'peso', 'altura', 'imc', 'data_inicio', 'observacoes'
+    )
+
+
+class DocumentoAdmin(admin.ModelAdmin):
+    list_display = (
+        'pessoa', 'tipo', 'numero',
+    )
+
+
+class EnderecoAdmin(admin.ModelAdmin):
+    list_display = (
+        'proprietario', 'rua', 'numero', 'bairro', 'cidade', 'estado', 'pais'
+    )
+
+class PlanoAdmin(admin.ModelAdmin):
+    list_display = (
+        'tipo', 'valor'
     )
 
 admin.site.register(Pessoa, PessoaAdmin)
 admin.site.register(FichaPessoa, FichaPessoaAdmin)
-admin.site.register(Plano)
-admin.site.register(Endereco)
-admin.site.register(Documento)
-
+admin.site.register(Documento, DocumentoAdmin)
+admin.site.register(Endereco, EnderecoAdmin)
+admin.site.register(Plano, PlanoAdmin)
